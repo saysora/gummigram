@@ -420,6 +420,11 @@ $hashColor: #1E2274;
         padding: 10px;
         
       }
+
+      @media(max-width: 600px) {
+        max-width: 99%;
+        width: 99%;
+      }
     }
     
     .modal-close {

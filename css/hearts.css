@@ -346,6 +346,10 @@ body {
       text-align: center; }
     .modal .modal-card .modal-body {
       padding: 10px; }
+    @media (max-width: 600px) {
+      .modal .modal-card {
+        max-width: 99%;
+        width: 99%; } }
   .modal .modal-close {
     position: absolute;
     top: 3%;
