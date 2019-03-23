@@ -10,5 +10,14 @@ With it, you can create your own posts as your favorite Kingdom Hearts character
 
 
 Suggestions?
+
 [Gummigram Discord](https://discord.gg/fbChRKn)
+
 [Heart Container Heroes Discord](https://discord.gg/teSEFWZ)
+
+
+### Info
+
+This website is merely a fan creation based off of the series Kingdom Hearts and all the characters and concepts within there.
+
+All characters/etc belong to Square Enix and Disney.
