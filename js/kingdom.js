@@ -1,10 +1,8 @@
 /* It's a work in progress */
 
 /* TODO:
-
-  + Add Spot to show current user for posting;
-  + Add editing for posts
-  + Fix Editing for Comments
+  
+  + Choose Commentor in Comment Section
 
 */
 
@@ -13,102 +11,102 @@ var authors = [
   {
     'id': 1,
     'name': 'Sora',
-    'profileImage': 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/26158/sora-avatar.png'
+    'profileImage': '/images/characters/sora-avatar.png'
   },
   {
     'id': 2,
     'name': 'Kairi',
-    'profileImage': 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/26158/kairi-avatar.png'
+    'profileImage': '/images/characters/kairi-avatar.png'
   },
   {
   'id': 3,
   'name': 'Riku',
-  'profileImage': 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/26158/riku-avatar.png'
+  'profileImage': '/images/characters/riku-avatar.png'
   },
   {
     'id': 4,
     'name': 'Aqua',
-    'profileImage':'https://s3-us-west-2.amazonaws.com/s.cdpn.io/26158/aqua-avatar.png'
+    'profileImage':'/images/characters/aqua-avatar.png'
   },
   {
     'id': 5,
     'name': 'Terra',
-    'profileImage':'https://s3-us-west-2.amazonaws.com/s.cdpn.io/26158/terra-avatar.png'
+    'profileImage':'/images/characters/terra-avatar.png'
   },
   {
     'id': 6,
     'name': 'Ventus',
-    'profileImage': 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/26158/kh-ventus.png'
+    'profileImage': '/images/characters/kh-ventus.png'
   },
   {
     'id':7,
     'name': 'Roxas',
-    'profileImage':'https://s3-us-west-2.amazonaws.com/s.cdpn.io/26158/roxas-avatar.png'
+    'profileImage':'/images/characters/roxas-avatar.png'
   },
   {
     'id':8,
     'name': 'Naminé',
-    'profileImage': 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/26158/namine-avatar.png'
+    'profileImage': '/images/characters/namine-avatar.png'
   },
   {
     'id': 9,
     'name': 'Axel',
-    'profileImage': 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/26158/kh-axel.png',
+    'profileImage': '/images/characters/kh-axel.png',
   },
   {
     'id': 10,
     'name': 'Saïx',
-    'profileImage': 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/26158/kh-saix.png'
+    'profileImage': '/images/characters/kh-saix.png'
   },
   {
     'id': 11,
     'name': 'Zexion',
-    'profileImage': 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/26158/kh-zexion.png'
+    'profileImage': '/images/characters/kh-zexion.png'
   },
   {
     'id': 12,
     'name': 'Xigbar',
-    'profileImage': 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/26158/kh-xigbar.png'
+    'profileImage': '/images/characters/kh-xigbar.png'
   },
   {
     'id': 13,
     'name': 'Luxord',
-    'profileImage': 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/26158/kh-luxord.png',
+    'profileImage': '/images/characters/kh-luxord.png',
   },
   {
     'id': 14,
     'name': 'Xaldin',
-    'profileImage': 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/26158/kh-xaldin.png'
+    'profileImage': '/images/characters/kh-xaldin.png'
   },
   {
     'id': 15,
     'name': 'Vexen',
-    'profileImage': 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/26158/kh-vexen.png',
+    'profileImage': '/images/characters/kh-vexen.png',
   },
   {
     'id': 16,
     'name': 'Demyx',
-    'profileImage': 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/26158/kh-demyx.png'
+    'profileImage': '/images/characters/kh-demyx.png'
   }, 
   {
     'id': 17,
     'name': 'Marluxia',
-    'profileImage': 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/26158/kh-marluxia.png',
+    'profileImage': '/images/characters/kh-marluxia.png',
   },
   {
     'id': 18,
     'name': 'Larxene',
-    'profileImage': 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/26158/kh-larxene.png'
+    'profileImage': '/images/characters/kh-larxene.png'
   },
   {
     'id': 19,
     'name': 'Lexeaus',
-    'profileImage': 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/26158/kh-lexaus.png'
+    'profileImage': '/images/characters/kh-lexaus.png'
   },
   {
     'id': 20,
     'name': 'Xemnas',
-    'profileImage': 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/26158/kh-xemnas.png'
+    'profileImage': '/images/characters/kh-xemnas.png'
   }
 ];
 
@@ -159,10 +157,11 @@ $(document).on('submit', '.comment-input-form', function(e){
 
   /* Set the message to the input */
   var message = $(this).find('.comment-input-field').val();
+  var poster = $(this).find('.mini-char-selector').data('char') ? authors[$(this).find('.mini-char-selector').data('char')].id : currentUser.id;
   /* Post the comment with function */
   
 
-  makeNewComment(currentUser.id, $(this).parent().parent().data('post'), message);
+  makeNewComment(poster, $(this).parent().parent().data('post'), message);
 
   $(this).find('.comment-input-field').val('');
 });
@@ -170,7 +169,7 @@ $(document).on('submit', '.comment-input-form', function(e){
 $(document).on('keydown', '.comment-input-field', function(event){
   if(event.keyCode === 13) {
     event.preventDefault();
-    $(this).parent('.comment-input-form').trigger('submit');
+    $(this).parent().trigger('submit');
   }
 });
 
@@ -236,7 +235,7 @@ $(document).on('click', '.comment-item', function(){
     var newMessage = $(this).val();
     if(e.keyCode === 27) {
      that.removeClass('editing');
-     message.text(message);
+     message.text(original);
       $(document).off('keydown', '.comment-input-field.edit'); 
     }
 
@@ -249,7 +248,7 @@ $(document).on('click', '.comment-item', function(){
       }
       that.removeClass('editing');
       //$('#' + id).find('.comment-message').html($(this).val());
-      console.log(comment);
+      
       post.comments[comment].message = newMessage;
       buildPostList();
       $(document).off('keydown', '.comment-input-field.edit'); 
@@ -323,33 +322,6 @@ $('#newPost').on('submit', function(e){
   }
   
 });
-
-/*
-$('#postCaption').on('keyup', function(e){
-  var that = $(this);
-  setTimeout(function(){
-    var hashReg = /\W(\#[a-zA-Z]+\b)(?!;)/gm;
-    var str = that.val();
-
-    while ((m = hashReg.exec(str)) !== null) {
-      // This is necessary to avoid infinite loops with zero-width matches
-      if (m.index === hashReg.lastIndex) {
-          hashReg.lastIndex++;
-      }
-      
-      // The result can be accessed through the `m`-variable.
-      m.forEach((match, groupIndex) => {
-          console.log(match);
-          var hash = that.find(match);
-          
-      });
-    }
-  }, 2000);
-
-});
-
-*/
-
 
 function makeNewPost(author, image, caption) {
   var user = author;
@@ -440,7 +412,7 @@ function buildPostList() {
     }
     
     postList += `
-<div class="feed-item" id="post-${post.id}">
+<div class="feed-item" id="post-${post.id}" data-post=${post.id}>
 <div class="item-header">
   <div class="item-avatar">
 <div class="author-image">
@@ -457,7 +429,7 @@ ${theAuthor.name}
                         <div class="dot"></div>
                     </div>
                     <div class="tool-bar">
-                        <div class="tool-bar-item">Edit Post</div>
+                        <div class="tool-bar-item edit-post" data-post="${post.id}">Edit Post</div>
                         <div class="tool-bar-item delete-post" data-post="${post.id}">Delete Post</div>
                         
                     </div>
@@ -476,6 +448,15 @@ ${post.caption}
           
           <div class="comment-input">
             <form class="comment-input-form" data-post="comment-post-${post.id}">
+            <div class="comment-input-fields">
+              <div class="mini-char-selector" data-char="">
+                <div class="selected-char">
+                    
+                </div>
+                <div class="selected-char-options">
+
+              </div>
+            </div>
             <textarea class="comment-input-field" type="text" placeholder="Enter Comment" ></textarea> 
             </form>
           </div>
@@ -488,20 +469,18 @@ ${post.caption}
   });
   
   $('#activeFeed').html(postList);
-  makeHeartTag(); 
-}
 
-$(document).ready(function(){
-  buildPostList();
-  listChars();
-});
+  makeHeartTag();
+  buildCommentorOpts();
+}
 
 function listChars() {
   var charListSpot = $('#characterList');
   var selectChars = $('#charAccount');
   var curUserList = '';
+  var chars = authors;
   var selectList ='';
-  authors.forEach(function(author) {
+  chars.reverse().forEach(function(author) {
     curUserList += `
     <div class="char-option ${author.id == 1 ? 'active' : ''}" data-char="${author.id}">
 <div class="char-option-image">
@@ -530,27 +509,39 @@ function swapChar(author) {
   $('#curChar').html(`
     <img src="${author.profileImage}">
   `);
+  $('.selected-char').html(`
+    <img src="${author.profileImage}">
+  `);
 }
 
 $('#curCharHold').on('click', swapChar(currentUser));
 
-
+/** 
+ * Character Switcher
+*/
 
 $(document).on('click', '.char-option', function(e){
   e.preventDefault();
   var that = $(this);
+
   var user = authors.find(function(author){
     if(that.data('char') == author.id) {
       return author;
     }
   });
+
   $('.char-option').removeClass('active');
+
   that.addClass('active');
   currentUser = user;
   swapChar(currentUser);
   window.location.href = '#';
   
 });
+
+/**
+ * Post Controls
+ */
 
 $(document).on('click', '.item-controls', function(e){
   e.stopPropagation();
@@ -560,6 +551,57 @@ $(document).on('click', '.item-controls', function(e){
         $(this).addClass('active');
     }
 });
+
+/**
+ * Edit Post Caption
+ */
+
+$(document).on('click', '.edit-post', function(e){
+  e.stopPropagation();
+  var that = $(this);
+
+  var post = posts.findIndex(function(post){
+    if(that.data('post') == post.id) {
+      return post;
+    }
+  });
+
+  var editPost = $('#post-' + posts[post].id).find('.item-caption');
+  var curState = editPost.html();
+
+  editPost.html(`
+  <textarea class="item-caption-input" rows="4">${posts[post].caption.trim()}</textarea>
+  `);
+
+  $(document).on('keydown', '.item-caption-input', function(e){
+
+    if(e.keyCode === 27) {
+      editPost.html(curState);
+      $(document).off('keydown', '.item-caption-input');
+    }
+
+    if(e.keyCode === 13) {
+
+      posts[post].caption = editPost.find('.item-caption-input').val().trim();
+      buildPostList();
+      
+      $(document).off('keydown', '.item-caption-input');
+    }
+    
+    
+  });
+
+  //posts[post].caption = 'Yo momma';
+
+  //buildPostList();
+
+});
+
+
+
+/**
+ * Post Deletion
+ */
 
 $(document).on('click', '.delete-post', function(e){
     e.stopPropagation();
@@ -585,22 +627,82 @@ $(document).on('click', '.delete-post', function(e){
 
 });
 
-/* Close menus if clicked out of */
-
-$(window).on('click', function(e){
-  $('.item-controls').removeClass('active');
-});
 
 function makeHeartTag() {
   var hashtag = $('.item-caption').text().match(/\W(\#[a-zA-Z]+\b)(?!;)/gm);
   
-  hashtag.forEach(function(hash){
-    
-    var index = $('.item-caption:contains(' + hash +')');
+  
+  if(hashtag !== null) {
+    hashtag.forEach(function(hash){
+      
+      var index = $('.item-caption:contains(' + hash +')');
 
-    //console.log(index.html().replace(hash, ' <span class="heart">' + hash.replace('#','').trim() + '</span> '));
+      //console.log(index.html().replace(hash, ' <span class="heart">' + hash.replace('#','').trim() + '</span> '));
 
-    index.html(index.html().replace(hash, ' <span class="heart">' + hash.replace('#','').trim() + '</span> '));
+      index.html(index.html().replace(hash, ' <span class="heart">' + hash.replace('#','').trim() + '</span> '));
 
+    });
+  }
+}
+
+
+function buildCommentorOpts() {
+
+  var authorOutput = '';
+  authors.reverse().forEach(function(author, index){
+      authorOutput += `
+      <div class="selected-char-option" data-char="${index}">
+          <div class="char-option-image">
+              <img src="${author.profileImage}">
+          </div>
+      </div>
+      `;    
+  });
+
+  $('.selected-char').html(`<img src="${currentUser.profileImage}">`);
+  $('.selected-char-options').html(authorOutput);
+
+
+  $('.mini-char-selector').on('click', function(e){
+      e.stopPropagation();
+      
+      var opts = $(this).find('.selected-char-options');
+      if(opts.hasClass('active')) {
+          opts.removeClass('active');
+      } else {
+          opts.addClass('active');
+          opts.animate({
+            scrollTop: opts.height() + 'px'
+          });
+      }
+  });
+
+  $('.selected-char-option').on('click', function(){
+
+      $(this).parent().find('.selected-char-option').removeClass('active');
+      $(this).addClass('active');
+      $(this).parent().siblings('.selected-char').html(`
+          <img src="${authors[$(this).data('char')].profileImage}">
+      `);
+     $(this).parent().parent().attr('data-char', $(this).data('char'));
+     
   });
 }
+
+
+
+
+/* Close menus if clicked out of */
+
+$(window).on('click', function(e){
+  $('.item-controls').removeClass('active');
+  $('.selected-char-options').removeClass('active');
+});
+
+
+/* Build on Ready */
+
+$(document).ready(function(){
+  buildPostList();
+  listChars();
+});
