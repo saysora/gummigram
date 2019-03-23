@@ -2,10 +2,10 @@
 
 /* TODO:
   
-  + Choose Commentor in Comment Section
 
 */
 
+var localStore = window.localStorage;
 
 var authors = [
   {
@@ -110,6 +110,8 @@ var authors = [
   }
 ];
 
+if(!localStorage.getItem('posts')) {
+
 var posts = [
   {
     'id': 1,
@@ -139,6 +141,10 @@ I definitely didn't pack for this kind of weather. #freezing #whyisitsocold`,
     ]
   }
 ];
+
+} else {
+  var posts = JSON.parse(localStore.getItem('posts'));
+}
 
 /* Set the user on load */
 
@@ -472,6 +478,7 @@ ${post.caption}
 
   makeHeartTag();
   buildCommentorOpts();
+  localStore.setItem('posts', JSON.stringify(posts));
 }
 
 function listChars() {
