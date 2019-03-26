@@ -738,6 +738,7 @@ $hashColor: #1E2274;
 
     border: 5px dashed $hashColor;
     overflow: hidden;
+    max-height: 400px;
 
     .image-preview {
       max-width: 100%;

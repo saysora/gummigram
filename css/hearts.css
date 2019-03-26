@@ -579,7 +579,8 @@ body {
   background: #f3f3f3;
   color: #1E2274;
   border: 5px dashed #1E2274;
-  overflow: hidden; }
+  overflow: hidden;
+  max-height: 400px; }
   .drag-drop-spot .image-preview {
     max-width: 100%;
     height: auto; }
