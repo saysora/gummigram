@@ -101,6 +101,11 @@
               Image
             </label>
             <input type="text" name="image" id="postImage" placeholder="Image URL">
+
+            <div class="drag-drop-spot" id="dropURL" ondragover="return false">
+              Drop Image URL
+            </div>
+
           </div>
           <div>
             <label for="postCaption">
@@ -110,14 +115,18 @@
           </div>
           <div>
             <label for="charAccount">
+
               Character to Post As
             </label>
+
             <select id="charAccount">
               <option value="0">Current</option>
             </select>
+
           </div>
           <button type="submit">Post</button>
         </form>
+
       </div>
     </div>
   </div>
