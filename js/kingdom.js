@@ -1,7 +1,7 @@
 /* It's a work in progress */
 
 /* TODO:
-  
+  + Do or do not swap commentor image on change character
 
 */
 
@@ -160,10 +160,19 @@ var currentUser = authors[0];
 $(document).on('submit', '.comment-input-form', function(e){
   /* Iterate comment num */
   e.preventDefault();
-
+  var that = $(this);
   /* Set the message to the input */
   var message = $(this).find('.comment-input-field').val();
-  var poster = $(this).find('.mini-char-selector').data('char') ? authors[$(this).find('.mini-char-selector').data('char')].id : currentUser.id;
+  
+
+  var person = authors.find(function(author){
+    if(that.find('.mini-char-selector').data('char') == author.id) {
+      return author;
+    }
+  });
+  
+  var poster = $(this).find('.mini-char-selector').data('char') != 0 ? person.id : currentUser.id;
+  
   /* Post the comment with function */
   
 
@@ -205,12 +214,17 @@ function makeNewComment(author,post,message) {
     buildPostList();
   }
 
+  $(document).scrollTop()
+
 }
 
 /* Comment Editing */
 
-$(document).on('click', '.comment-item', function(){
-  var id= $(this).attr('id');
+$(document).on('click', '.comment-item', function(e){
+  $('.comment-input-field.edit').each(returnComment);
+  e.stopPropagation();
+
+  var id = $(this).attr('id');
   
   var that = $(this);
   var message = $(this).children('.comment-message');
@@ -237,7 +251,7 @@ $(document).on('click', '.comment-item', function(){
     
   message.html(`<textarea class="comment-input-field edit">${original.trim()}</textarea>`);
     
-  $(document).on('keydown', '.comment-input-field.edit', function(e){
+  $('.comment-input-field.edit').on('keydown', function(e){
     var newMessage = $(this).val();
     if(e.keyCode === 27) {
      that.removeClass('editing');
@@ -267,6 +281,36 @@ $(document).on('click', '.comment-item', function(){
 }
   
 });
+
+$(document).on('click', '.comment-input-field.edit', function(e){
+  e.stopPropagation();
+});
+
+
+/* Return Comment to old state */
+
+function returnComment() {
+  var ogComment = $(this).closest('.comment-item.editing');
+  var postId = ogComment.data('post');
+  var commentId = ogComment.data('comment');
+
+  var post = posts.find(function(post){
+    if(postId == post.id) {
+      return post;
+    }    
+  });
+
+  var comment = post.comments.find(function(comment){
+    if(commentId == comment.id) {
+      return comment;
+    }
+  });
+  ogComment.removeClass('editing');
+  $(this).closest('.comment-message').text(comment.message);
+
+}
+
+/* Comment Deletion */
 
 $(document).on('click', '.comment-delete', deleteComment);
 
@@ -468,6 +512,7 @@ ${post.caption}
           </div>
             
         </div>  
+</div>
 </div>`;
     
     
@@ -485,9 +530,8 @@ function listChars() {
   var charListSpot = $('#characterList');
   var selectChars = $('#charAccount');
   var curUserList = '';
-  var chars = authors;
   var selectList ='';
-  chars.reverse().forEach(function(author) {
+  authors.forEach(function(author) {
     curUserList += `
     <div class="char-option ${author.id == 1 ? 'active' : ''}" data-char="${author.id}">
 <div class="char-option-image">
@@ -519,6 +563,7 @@ function swapChar(author) {
   $('.selected-char').html(`
     <img src="${author.profileImage}">
   `);
+  $('.selected-char').closest('.mini-char-selector').attr('data-char', author.id);
 }
 
 $('#curCharHold').on('click', swapChar(currentUser));
@@ -598,9 +643,7 @@ $(document).on('click', '.edit-post', function(e){
     
   });
 
-  //posts[post].caption = 'Yo momma';
-
-  //buildPostList();
+  
 
 });
 
@@ -654,11 +697,12 @@ function makeHeartTag() {
 
 
 function buildCommentorOpts() {
-
+  var chars = authors.slice();
+  
   var authorOutput = '';
-  authors.reverse().forEach(function(author, index){
+  chars.reverse().forEach(function(author){
       authorOutput += `
-      <div class="selected-char-option" data-char="${index}">
+      <div class="selected-char-option" data-char="${author.id}">
           <div class="char-option-image">
               <img src="${author.profileImage}">
           </div>
@@ -685,11 +729,18 @@ function buildCommentorOpts() {
   });
 
   $('.selected-char-option').on('click', function(){
+    var that = $(this);
+    var swappedAuth = authors.find(function(author){
+      if(that.data('char') == author.id) {
+        return author;
+      }
+    });
+    //console.log(swappedAuth);
 
       $(this).parent().find('.selected-char-option').removeClass('active');
       $(this).addClass('active');
       $(this).parent().siblings('.selected-char').html(`
-          <img src="${authors[$(this).data('char')].profileImage}">
+          <img src="${swappedAuth.profileImage}">
       `);
      $(this).parent().parent().attr('data-char', $(this).data('char'));
      
@@ -704,8 +755,27 @@ function buildCommentorOpts() {
 $(window).on('click', function(e){
   $('.item-controls').removeClass('active');
   $('.selected-char-options').removeClass('active');
+  
+  $('.comment-input-field.edit').each(returnComment);
 });
 
+//$(document).on('drop', '#dropURL', dropImage);
+
+function dropImage(e) {
+  var imgReg = /\.(gif|jpg|jpeg|png)$/i;
+  var image = e.dataTransfer.getData('text/plain');
+  e.stopPropagation();
+  e.preventDefault();
+  if(imgReg.test(image)) {
+    document.getElementById('postImage').value = image;
+    document.getElementById('dropURL').innerHTML = '<img class="image-preview" src="' + image + '">';
+    document.getElementById('dropURL').classList.add('full');
+  }
+
+}
+
+
+document.getElementById('dropURL').addEventListener('drop', dropImage, false);
 
 /* Build on Ready */
 

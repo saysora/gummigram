@@ -27,7 +27,7 @@ body {
   min-height: 100%; }
 
 .kh-feed {
-  max-width: 1024px;
+  max-width: 800px;
   min-height: 500px;
   margin: auto;
   padding-bottom: 5px;
@@ -142,7 +142,7 @@ body {
     align-items: center; }
     .feed-item .item-avatar .author-image {
       background: #FD9694;
-      width: 75px;
+      width: 65px;
       border-radius: 50%;
       overflow: hidden;
       margin: 10px; }
@@ -269,7 +269,7 @@ body {
   left: 0;
   right: 0;
   max-height: 0;
-  width: 1024px;
+  width: 800px;
   background: #fff;
   z-index: 40;
   left: 50%;
@@ -331,8 +331,8 @@ body {
   -o-transition: opacity .300s ease;
   transition: opacity .300s ease; }
   .modal .modal-card {
-    max-width: 60%;
-    min-width: 50%;
+    width: 800px;
+    max-width: 100%;
     background: #fff;
     font-family: 'Coda';
     position: relative;
@@ -414,7 +414,10 @@ body {
     -ms-flex-align: center;
     align-items: center;
     cursor: pointer;
-    width: calc(100% / 2); }
+    width: calc(100% / 2);
+    -webkit-transition: background .300s ease, color .300s ease;
+    -o-transition: background .300s ease, color .300s ease;
+    transition: background .300s ease, color .300s ease; }
     .char-list-hold .char-option .char-option-image {
       width: 75px;
       border-radius: 50%;
@@ -556,3 +559,29 @@ body {
     color: #1E2274; }
   .info .social {
     padding: 10px 0; }
+
+/* Drag Drop Spots */
+.drag-drop-spot {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  font-family: 'Coda';
+  font-weight: 700;
+  margin: 10px 0;
+  width: 50%;
+  min-height: 100px;
+  background: #f3f3f3;
+  color: #1E2274;
+  border: 5px dashed #1E2274;
+  overflow: hidden; }
+  .drag-drop-spot .image-preview {
+    max-width: 100%;
+    height: auto; }
+  .drag-drop-spot.full {
+    border: 5px solid #1E2274; }

@@ -35,7 +35,7 @@ $hashColor: #1E2274;
   }
   
   .kh-feed {
-    max-width: 1024px;
+    max-width: 800px;
     //background: #f3f3f3;
     min-height: 500px;
     margin: auto;
@@ -164,7 +164,7 @@ $hashColor: #1E2274;
       
       .author-image {
         background: #FD9694;
-        width: 75px;
+        width: 65px;
         border-radius: 50%;
         overflow: hidden;
         margin: 10px;
@@ -335,7 +335,7 @@ $hashColor: #1E2274;
     left: 0;
     right: 0;
     max-height: 0;
-    width: 1024px;
+    width: 800px;
     background: #fff;
     z-index: 40;
     left: 50%;
@@ -400,8 +400,9 @@ $hashColor: #1E2274;
     transition: opacity .300s ease;
     
     .modal-card {
-      max-width: 60%;
-      min-width: 50%;
+      width:800px;
+      max-width: 100%;
+
       background: #fff;
       font-family: 'Coda';
       position: relative;
@@ -496,6 +497,8 @@ $hashColor: #1E2274;
       align-items: center;
       cursor: pointer;
       width: calc(100% / 2);
+
+      transition: background .300s ease, color .300s ease;
       
       
       .char-option-image {
@@ -712,4 +715,37 @@ $hashColor: #1E2274;
     .social {
       padding: 10px 0;
     }
+  }
+
+  /* Drag Drop Spots */
+
+  .drag-drop-spot {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-family: 'Coda';
+    font-weight: 700;
+
+    margin: 10px 0;
+
+    width: 50%;
+
+    min-height: 100px;
+
+    background: #f3f3f3;
+    color: $hashColor;
+
+    border: 5px dashed $hashColor;
+    overflow: hidden;
+
+    .image-preview {
+      max-width: 100%;
+      height: auto;
+    }
+
+    &.full {
+      border: 5px solid $hashColor;
+    }
+
   }
