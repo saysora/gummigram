@@ -762,14 +762,56 @@ $(window).on('click', function(e){
 //$(document).on('drop', '#dropURL', dropImage);
 
 function dropImage(e) {
-  var imgReg = /\.(gif|jpg|jpeg|png)$/i;
-  var image = e.dataTransfer.getData('text/plain');
-  e.stopPropagation();
   e.preventDefault();
-  if(imgReg.test(image)) {
-    document.getElementById('postImage').value = image;
-    document.getElementById('dropURL').innerHTML = '<img class="image-preview" src="' + image + '">';
+  var image = e.dataTransfer.getData('text/plain');
+  $('#postImage').val(image);
+  checkImage(image);
+
+}
+
+// Set Image Input to detect when there is an image
+
+
+
+function checkImage(imageInput) {
+  
+  var imgReg = /\.(gif|jpg|jpeg|png)$/i;
+  
+  
+  if(imgReg.test(imageInput)) {
+    document.getElementById('dropURL').innerHTML = '<img class="image-preview" src="' + imageInput + '">';
     document.getElementById('dropURL').classList.add('full');
+  } else {
+    document.getElementById('dropURL').innerHTML = ' Drop Image URL';
+    document.getElementById('dropURL').classList.remove('full');
+  }
+
+
+}
+
+var debImage = debounce(function(){
+  checkImage($('#postImage').val());
+}, 250);
+
+
+// Quick Debounce
+
+function debounce(func, wait, immediate) {
+
+  var timeout;
+
+  return function() {
+    var context = this, args = arguments;
+    var later = function() {
+      timeout = null;
+      if(!immediate) func.apply(context,args);
+    };
+
+    var callNow = immediate && !timeout;
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+    if (callNow) func.apply(context,args);
+
   }
 
 }
@@ -782,4 +824,5 @@ document.getElementById('dropURL').addEventListener('drop', dropImage, false);
 $(document).ready(function(){
   buildPostList();
   listChars();
+  $('#postImage').on('keydown', debImage);
 });
