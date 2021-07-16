@@ -11,102 +11,102 @@ var authors = [
   {
     'id': 1,
     'name': 'Sora',
-    'profileImage': '/images/characters/sora-avatar.png'
+    'profileImage': '/saysora/gummigram/images/characters/sora-avatar.png'
   },
   {
     'id': 2,
     'name': 'Kairi',
-    'profileImage': '/images/characters/kairi-avatar.png'
+    'profileImage': '/saysora/gummigram/images/characters/kairi-avatar.png'
   },
   {
   'id': 3,
   'name': 'Riku',
-  'profileImage': '/images/characters/riku-avatar.png'
+  'profileImage': '/saysora/gummigram/images/characters/riku-avatar.png'
   },
   {
     'id': 4,
     'name': 'Aqua',
-    'profileImage':'/images/characters/aqua-avatar.png'
+    'profileImage':'/saysora/gummigram/images/characters/aqua-avatar.png'
   },
   {
     'id': 5,
     'name': 'Terra',
-    'profileImage':'/images/characters/terra-avatar.png'
+    'profileImage':'/saysora/gummigram/images/characters/terra-avatar.png'
   },
   {
     'id': 6,
     'name': 'Ventus',
-    'profileImage': '/images/characters/kh-ventus.png'
+    'profileImage': '/saysora/gummigram/images/characters/kh-ventus.png'
   },
   {
     'id':7,
     'name': 'Roxas',
-    'profileImage':'/images/characters/roxas-avatar.png'
+    'profileImage':'/saysora/gummigram/images/characters/roxas-avatar.png'
   },
   {
     'id':8,
     'name': 'Naminé',
-    'profileImage': '/images/characters/namine-avatar.png'
+    'profileImage': '/saysora/gummigram/images/characters/namine-avatar.png'
   },
   {
     'id': 9,
     'name': 'Axel',
-    'profileImage': '/images/characters/kh-axel.png',
+    'profileImage': '/saysora/gummigram/images/characters/kh-axel.png',
   },
   {
     'id': 10,
     'name': 'Saïx',
-    'profileImage': '/images/characters/kh-saix.png'
+    'profileImage': '/saysora/gummigram/images/characters/kh-saix.png'
   },
   {
     'id': 11,
     'name': 'Zexion',
-    'profileImage': '/images/characters/kh-zexion.png'
+    'profileImage': '/saysora/gummigram/images/characters/kh-zexion.png'
   },
   {
     'id': 12,
     'name': 'Xigbar',
-    'profileImage': '/images/characters/kh-xigbar.png'
+    'profileImage': '/saysora/gummigram/images/characters/kh-xigbar.png'
   },
   {
     'id': 13,
     'name': 'Luxord',
-    'profileImage': '/images/characters/kh-luxord.png',
+    'profileImage': '/saysora/gummigram/images/characters/kh-luxord.png',
   },
   {
     'id': 14,
     'name': 'Xaldin',
-    'profileImage': '/images/characters/kh-xaldin.png'
+    'profileImage': '/saysora/gummigram/images/characters/kh-xaldin.png'
   },
   {
     'id': 15,
     'name': 'Vexen',
-    'profileImage': '/images/characters/kh-vexen.png',
+    'profileImage': '/saysora/gummigram/images/characters/kh-vexen.png',
   },
   {
     'id': 16,
     'name': 'Demyx',
-    'profileImage': '/images/characters/kh-demyx.png'
+    'profileImage': '/saysora/gummigram/images/characters/kh-demyx.png'
   }, 
   {
     'id': 17,
     'name': 'Marluxia',
-    'profileImage': '/images/characters/kh-marluxia.png',
+    'profileImage': '/saysora/gummigram/images/characters/kh-marluxia.png',
   },
   {
     'id': 18,
     'name': 'Larxene',
-    'profileImage': '/images/characters/kh-larxene.png'
+    'profileImage': '/saysora/gummigram/images/characters/kh-larxene.png'
   },
   {
     'id': 19,
     'name': 'Lexeaus',
-    'profileImage': '/images/characters/kh-lexaus.png'
+    'profileImage': '/saysora/gummigram/images/characters/kh-lexaus.png'
   },
   {
     'id': 20,
     'name': 'Xemnas',
-    'profileImage': '/images/characters/kh-xemnas.png'
+    'profileImage': '/saysora/gummigram/images/characters/kh-xemnas.png'
   }
 ];
 
